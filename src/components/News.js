@@ -18,10 +18,10 @@ const News = (props) => {
   }
 
 
-  const updateNews = useCallback ( async () => {
+  const updateNews = async () => {
     props.setProgress(10);
-    const url = `https://newsdata.io/api/1/news?apiKey=${props.apiKey}&country=${props.country}&category=${props.category}&Page=${page}`
-    
+    const url = `https://api.thenewsapi.com/v1/news/top?api_token=${props.apiKey}&locale=${props.country}&categories=${props.category}&page=${page}`
+    // const url = `https://newsdata.io/api/1/news?apiKey=${props.apiKey}&country=${props.country}&category=${props.category}&Page=${page}`
     // const url =
     // `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
     setLoading(true);
@@ -30,16 +30,17 @@ const News = (props) => {
     let parsedData = await data.json();
     props.setProgress(70);
     // setArticles(parsedData.articles);
-    setArticles(parsedData.results);
-    setTotalArticles(parsedData.totalResults);
+    // setTotalArticles(parsedData.totalResults);
+    setArticles(parsedData.data);
+    setTotalArticles(parsedData.meta);
     setLoading(false);
     props.setProgress(100);
-  },[page, props])
+  }
 
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} - News App`;
     updateNews();
-  }, [props.category, updateNews]);
+  }, []);
 
 
   // const handlePrevClick = async () => {
@@ -53,15 +54,17 @@ const News = (props) => {
   // };
 
   const fetchMoreData = async () => {
-    const url = `https://newsdata.io/api/1/news?apiKey=${props.apiKey}&country=${props.country}&category=${props.category}&Page=${page+1}`
+    const url = `https://api.thenewsapi.com/v1/news/top?api_token=${props.apiKey}&locale=${props.country}&categories=${props.category}&page=${page+1}`
+    // const url = `https://newsdata.io/api/1/news?apiKey=${props.apiKey}&country=${props.country}&category=${props.category}&Page=${page+1}`
     // const url =
     // `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`;
     setPage(page+1);
     let data = await fetch(url);
     let parsedData = await data.json();
     // setArticles(articles.concat(parsedData.articles));
-    setArticles(articles.concat(parsedData.results));
-    setTotalArticles(parsedData.totalResults);
+    // setTotalArticles(parsedData.totalResults);
+    setArticles(articles.concat(parsedData.data));
+    setTotalArticles(parsedData.meta);
   };
 
   return (
@@ -79,22 +82,22 @@ const News = (props) => {
               <div className="row">
                   {articles.map((element) => {
                       return (
-                      <div className="col-lg-4 col-md-6 my-2" key={element.link}>
+                      <div className="col-lg-4 col-md-6 my-2" key={element.url}>
                           <NewsItem
                           title={element.title ? element.title.slice(0, 45) : ""}
                           description={element.description ? element.description.slice(0, 88) : ""}
 
                           // imageurl={element.urlToImage? element.urlToImage: "https://static01.nyt.com/newsgraphics/images/icons/defaultPromoCrop.png"}
-                          // newsurl={element.url}
+                          newsurl={element.url}
                           // author={element.author ? element.author : "Unknown"}
                           // date={element.publishedAt ? element.publishedAt : "Unknown"}
                           // source={element.source.name ? element.source.name : "Unknown"}
 
                           imageurl={element.image_url ? element.image_url: "https://images.edexlive.com/uploads/user/imagelibrary/2021/3/8/w600X390/College_Textbooks.jpg"}
-                          newsurl={element.link}
-                          author={element.creator ? element.creator : "Unknown"}
-                          date={element.pubDate ? element.pubDate : "Unknown"}
-                          source={element.source_id ? element.source_id : "Unknown"}
+                          // newsurl={element.link}
+                          author={element.source ? element.source : "Unknown"}
+                          date={element.published_at ? element.published_at : "Unknown"}
+                          source={element.source ? element.source : "Unknown"}
                           />
                       </div>
                       );

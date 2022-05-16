@@ -1,3 +1,0 @@
-News API
-
-Your API key is: b0945650b76a48f499abef824b10148f
