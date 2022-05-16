@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ const News = (props) => {
   }
 
 
-  const updateNews = async () => {
+  const updateNews = useCallback ( async () => {
     props.setProgress(10);
     const url = `https://newsdata.io/api/1/news?apiKey=${props.apiKey}&country=${props.country}&category=${props.category}&Page=${page}`
     
@@ -34,12 +34,12 @@ const News = (props) => {
     setTotalArticles(parsedData.totalResults);
     setLoading(false);
     props.setProgress(100);
-  }
+  },[page, props])
 
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} - News App`;
     updateNews();
-  }, []);
+  }, [props.category, updateNews]);
 
 
   // const handlePrevClick = async () => {
