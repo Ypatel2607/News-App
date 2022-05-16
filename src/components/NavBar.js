@@ -19,7 +19,7 @@ const NavBar = () => {
               <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/health">Health</Link></li>
               <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/science">Science</Link></li>
               <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/sports">Sports</Link></li>
-              {/* <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/technology">Technology</Link></li> */}
+              <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/tech">Technology</Link></li>
 
               <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/politics">politics</Link></li>
               <li className="nav-item"><Link className="nav-link fs-5 mx-1" to="/food">food</Link></li>
