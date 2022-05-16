@@ -69,7 +69,7 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="fw-bold text-center mt-25 my-4">News App - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+      <h1 className="fw-bold text-center my-4" style={{marginTop: '7.0rem'}}>News App - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
 
       {loading && <Spinner/>}
       <InfiniteScroll
