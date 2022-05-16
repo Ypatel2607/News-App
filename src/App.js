@@ -15,12 +15,8 @@ const App = () => {
   return (
     <Router> 
       <div>
-        <div className="app">
         <NavBar />
-        </div>
-        <div>
         <LoadingBar color='#f11946' progress={progress} height={3} />
-        </div>
         <Routes>
           <Route exact path="/" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country={country} category="general"/>}></Route>
           {/* <Route exact path="/" element={<News setProgress={setProgress} apiKey={apiKey} key="top" pageSize={pageSize} country={country} category="top"/>}></Route> */}

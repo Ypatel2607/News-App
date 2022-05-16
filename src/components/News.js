@@ -32,7 +32,7 @@ const News = (props) => {
     // setArticles(parsedData.articles);
     // setTotalArticles(parsedData.totalResults);
     setArticles(parsedData.data);
-    setTotalArticles(parsedData.meta);
+    setTotalArticles(parsedData.meta.found);
     setLoading(false);
     props.setProgress(100);
   }
@@ -64,12 +64,12 @@ const News = (props) => {
     // setArticles(articles.concat(parsedData.articles));
     // setTotalArticles(parsedData.totalResults);
     setArticles(articles.concat(parsedData.data));
-    setTotalArticles(parsedData.meta);
+    setTotalArticles(parsedData.meta.found);
   };
 
   return (
     <>
-      <h1 className="fw-bold text-center my-4">News App - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+      <h1 className="fw-bold text-center mt-25 my-4">News App - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
 
       {loading && <Spinner/>}
       <InfiniteScroll
@@ -104,6 +104,7 @@ const News = (props) => {
                   })}
               </div>
           </div>
+        
       </InfiniteScroll>
 
     </>
