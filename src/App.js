@@ -29,7 +29,7 @@ const App = () => {
           <Route exact path="/health" element={<News setProgress={setProgress} apiKey={apiKey} key="health" pageSize={pageSize} country={country} category="health"/>}></Route>
           <Route exact path="/science" element={<News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={pageSize} country={country} category="science"/>}></Route>
           <Route exact path="/sports" element={<News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country={country} category="sports"/>}></Route>
-          <Route exact path="/tech" element={<News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country={country} category="tech"/>}></Route>
+          <Route exact path="/tech" element={<News setProgress={setProgress} apiKey={apiKey} key="tech" pageSize={pageSize} country={country} category="tech"/>}></Route>
           
           <Route exact path="/politics" element={<News setProgress={setProgress} apiKey={apiKey} key="politics" pageSize={pageSize} country={country} category="politics"/>}></Route>
           <Route exact path="/food" element={<News setProgress={setProgress} apiKey={apiKey} key="food" pageSize={pageSize} country={country} category="food"/>}></Route>
